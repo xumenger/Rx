@@ -1,5 +1,8 @@
 #lang racket
 
+(require (lib "racket/fixnum"))
+
+
 ; BNF
 ; exp ::= int | (read) | (- exp) | (+ exp exp)
 ; R0  ::= (program exp)
@@ -16,5 +19,22 @@
     [`(program ,e) (exp? e)]
     [else #f]))
 
-; proview
 (provide R0?)
+
+
+; R0 interpreter
+(define (interp-R0 p)
+  (define (exp ex)
+    (match ex
+      [(? fixnum?) ex]
+      ; if parse (read) call read to get input
+      [`(read)
+       (let ([r (read)])
+         (cond [(fixnum? r) r]
+               [else (error 'interp-R0 "input [~a] not an integer" r)]))]
+      [`(- ,e)      (fx- 0 (exp e))]
+      [`(+ ,e1 ,e2) (fx+ (exp e1) (exp e2))]))
+  (match p
+    [`(program ,e) (exp e)]))
+
+(provide interp-R0)
