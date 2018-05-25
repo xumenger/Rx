@@ -6,5 +6,4 @@
       (error 'wrong "[~a] ~a != ~a" msg a b))
   (newline))
 
-; provide
 (provide assert-equal)
