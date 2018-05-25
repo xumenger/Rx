@@ -1,7 +1,6 @@
 #lang racket
 
 (require "./R0.rkt")
-(require "./evaluator.rkt")
 (require "./unittest.rkt")
 
 ; test R0
