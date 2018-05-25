@@ -1,7 +1,7 @@
 #lang racket
 
 (require "./R0.rkt")
-(require "./unittest.rkt")
+(require "../test/unittest.rkt")
 
 ; test R0
 ; exp ::= int | (read) | (- exp) | (+ exp exp)
