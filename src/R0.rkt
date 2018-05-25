@@ -10,7 +10,8 @@
       [`(read) #t]
       [`(- ,e) (exp? e)]
       [`(+ ,e1 ,e2)
-        (and (exp? e1) (exp? e2))]))
+        (and (exp? e1) (exp? e2))]
+      [else #f]))
   (match sexp
     [`(program ,e) (exp? e)]
     [else #f]))
