@@ -4,3 +4,6 @@
   (if (eq? a b)
       (printf "correct!")
       (error 'wrong! "~a != ~a" a b)))
+
+; provide
+(provide assertequal)
