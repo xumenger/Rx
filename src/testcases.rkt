@@ -12,3 +12,4 @@
 (assertequal "(program (+ 8))" (R0? `(program (+ 8))) #f)
 (assertequal "(program (+ 1 1))" (R0? `(program (+ 1 1))) #t)
 (assertequal "(program (+ 1 (read)))" (R0? `(program (+ 1 (read)))) #t)
+(assertequal "(program (program 3))" (R0? `(program (program 3))) #f)
