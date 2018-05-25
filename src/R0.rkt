@@ -1,8 +1,16 @@
 #lang racket
 
-(define (leaf? arith)
-  (match arith
-    [(? fixnum?) #t]
-    ['(read) #t]
-    ['(- ,c1) #f]
-    ['(+ ,c1 ,c2) #f]))
+; BNF
+; exp ::= int | (read) | (- exp) | (+ exp exp)
+; R0  ::= (program exp)
+(define (R0? sexp)
+  (define (exp? ex)
+    (match ex
+      [(? fixnum?) #t]
+      [`(read) #t]
+      [`(- ,e) (exp? e)]
+      [`(+ ,e1 ,e2)
+        (and (exp? e1) (exp? e2))]))
+  (match sexp
+    [`(program ,e) (exp? e)]
+    [else #f]))
