@@ -1,6 +1,7 @@
 #lang racket
 
 (require "./R0.rkt")
+(require "./evaluator.rkt")
 (require "./unittest.rkt")
 
 ; test R0
@@ -17,3 +18,10 @@
 
 ; test interp-R0
 (interp-R0 `(program (+ 1 (+ (read) (- 8)))))
+
+
+; test evaluator
+(assert-equal "(pe-arith 1)" (pe-arith 1) 1)
+(assert-equal "(pe-arith (+ 1 1))" (pe-arith (+ 1 1)) 2)
+(assert-equal "(pe-arith (+ 1 1))" (pe-arith (+ 1 (- 3))) -2)
+(pe-arith (+ (read) (+ (- 3) (+ 10 (read)))))
